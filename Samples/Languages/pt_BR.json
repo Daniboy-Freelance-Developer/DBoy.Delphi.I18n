@@ -1,0 +1,42 @@
+{
+  "locale": "pt_BR",
+  "languageName": "Português (Brasil)",
+  "iconName": "flag_pt_BR",
+  "translations": {
+    "General": {
+    	"SMsgDlgConfirm": "Confirmação",
+      "SMsgDlgInformation": "Informação",
+      "SMsgDlgWarning": "Aviso",
+      "SMsgDlgError": "Erro",
+      "SMsgDlgYes": "Sim",
+      "SMsgDlgNo": "Não",
+      "SMsgDlgOK": "OK",
+      "SMsgDlgCancel": "Cancelar",
+      "SMsgConfirmExit": "Deseja realmente encerrar a aplicação?",
+      "SMsgSaveSuccess": "Registro gravado com sucesso!",
+      "SMsgErrorDelete": "Você não pode tem permissão de exclusão",
+      "SBtnDelete": "Excluir",
+      "SBtnPost": "Gravar"
+    },
+    "TFrmViewMain": {
+      "Caption": "Exemplo Suporte Internacionalização",
+      "mItemClose.Text": "Sair",
+      "mItemClose.Caption": "Sair",
+      "mItemLocale.Text": "Idioma",
+      "mItemLocale.Caption": "Idioma",
+      "mItemApp.Text": "Aplicação",
+      "mItemApp.Caption": "Aplicação",
+      "GroupBoxMain.Text": "Registros",
+      "GroupBoxMain.Caption": "Registros",
+      "actNewEntity.Caption": "Adicionar uma Nova Entidade"
+    },
+    "TFraEntity": {
+      "lblEntity.Text": "Entidade",
+      "lblEntity.Caption": "Entidade"
+    },
+    "TDMData": {
+      "tabEntityID.DisplayLabel": "CD",
+      "tabEntityEntity_Name.DisplayLabel": "Entidade Nome"
+    }
+  }
+}

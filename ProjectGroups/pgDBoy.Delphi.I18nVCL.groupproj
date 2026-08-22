@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{D774A448-9E50-4459-BB08-E59F34FCEC12}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\Samples\DBoy.I18n.VCL.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Tests\DBoy.I18n.VCL.Tests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DBoy_I18n_VCL">
+        <MSBuild Projects="..\Samples\DBoy.I18n.VCL.dproj"/>
+    </Target>
+    <Target Name="DBoy_I18n_VCL:Clean">
+        <MSBuild Projects="..\Samples\DBoy.I18n.VCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DBoy_I18n_VCL:Make">
+        <MSBuild Projects="..\Samples\DBoy.I18n.VCL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DBoy_I18n_VCL_Tests">
+        <MSBuild Projects="..\Tests\DBoy.I18n.VCL.Tests.dproj"/>
+    </Target>
+    <Target Name="DBoy_I18n_VCL_Tests:Clean">
+        <MSBuild Projects="..\Tests\DBoy.I18n.VCL.Tests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DBoy_I18n_VCL_Tests:Make">
+        <MSBuild Projects="..\Tests\DBoy.I18n.VCL.Tests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DBoy_I18n_VCL;DBoy_I18n_VCL_Tests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DBoy_I18n_VCL:Clean;DBoy_I18n_VCL_Tests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DBoy_I18n_VCL:Make;DBoy_I18n_VCL_Tests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -1,0 +1,119 @@
+inherited FrmViewMain: TFrmViewMain
+  Caption = 'Form1'
+  ClientHeight = 547
+  ClientWidth = 669
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  inherited lblLocale: TLabel
+    Position.Y = 531.000000000000000000
+    Size.Width = 669.000000000000000000
+  end
+  object MainMenu: TMainMenu
+    Images = ImageList
+    Left = 96
+    Top = 120
+    object mItemApp: TMenuItem
+      Text = 'mItemApp'
+      object mItemactNewEntity: TMenuItem
+        Action = actNewEntity
+        Locked = True
+        ImageIndex = -1
+      end
+    end
+    object mItemLocale: TMenuItem
+      Text = 'mItemLocale'
+    end
+    object mItemClose: TMenuItem
+      Text = 'mItemClose'
+      OnClick = mItemCloseClick
+    end
+  end
+  object GroupBoxMain: TGroupBox
+    Align = Client
+    Margins.Left = 3.000000000000000000
+    Margins.Top = 3.000000000000000000
+    Margins.Right = 3.000000000000000000
+    Margins.Bottom = 3.000000000000000000
+    Size.Width = 663.000000000000000000
+    Size.Height = 525.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'GroupBoxMain'
+    TabOrder = 4
+    object ListBoxEntity: TListBox
+      Align = Bottom
+      Margins.Left = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 403.000000000000000000
+      Size.Width = 653.000000000000000000
+      Size.Height = 117.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 38
+      DisableFocusEffect = True
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 649.000000000000000000
+      Viewport.Height = 113.000000000000000000
+    end
+    inline FraEntityMain: TFraEntity
+      Align = Top
+      Margins.Left = 3.000000000000000000
+      Margins.Top = 20.000000000000000000
+      Margins.Right = 3.000000000000000000
+      Margins.Bottom = 3.000000000000000000
+      Position.X = 3.000000000000000000
+      Position.Y = 20.000000000000000000
+      Size.Width = 657.000000000000000000
+      Size.Height = 55.000000000000000000
+      Size.PlatformDefault = False
+      inherited lblEntity: TLabel
+        Size.Width = 651.000000000000000000
+      end
+      inherited LayoutMain: TLayout
+        Size.Width = 657.000000000000000000
+        inherited btnDelete: TButton
+          Position.X = 574.000000000000000000
+        end
+        inherited edtEntity: TEdit
+          Size.Width = 479.000000000000000000
+        end
+        inherited btnPost: TButton
+          Position.X = 488.000000000000000000
+          OnClick = FraEntityMainbtnPostClick
+        end
+      end
+    end
+    object GridEntity: TGrid
+      Align = Client
+      CanFocus = True
+      ClipChildren = True
+      Margins.Left = 3.000000000000000000
+      Margins.Top = 3.000000000000000000
+      Margins.Right = 3.000000000000000000
+      Margins.Bottom = 3.000000000000000000
+      Size.Width = 657.000000000000000000
+      Size.Height = 319.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 39
+      Viewport.Width = 653.000000000000000000
+      Viewport.Height = 294.000000000000000000
+    end
+  end
+  object ActionList: TActionList
+    Images = ImageList
+    Left = 96
+    Top = 64
+    object actNewEntity: TAction
+      Text = 'actNewEntity'
+      OnExecute = actNewEntityExecute
+    end
+  end
+  object ImageList: TImageList
+    Source = <>
+    Destination = <>
+    Left = 96
+    Top = 176
+  end
+end

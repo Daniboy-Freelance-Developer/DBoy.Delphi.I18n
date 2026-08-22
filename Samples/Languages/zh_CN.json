@@ -1,0 +1,42 @@
+{
+  "locale": "zh_CN",
+  "languageName": "简体中文 (中国)",
+  "iconName": "flag_zh_CN",
+  "translations": {
+    "General": {
+    	"SMsgDlgConfirm": "确认",
+      "SMsgDlgInformation": "提示",
+      "SMsgDlgWarning": "警告",
+      "SMsgDlgError": "错误",
+      "SMsgDlgYes": "是",
+      "SMsgDlgNo": "否",
+      "SMsgDlgOK": "确定",
+      "SMsgDlgCancel": "取消",
+      "SMsgConfirmExit": "您确定要退出应用程序吗？",
+      "SMsgSaveSuccess": "记录保存成功！",
+      "SMsgErrorDelete": "您没有删除权限",
+      "SBtnDelete": "删除",
+      "SBtnPost": "保存"
+    },
+    "TFrmViewMain": {
+      "Caption": "国际化支持示例",
+      "mItemClose.Text": "退出",
+      "mItemLocale.Text": "语言",
+      "mItemApp.Text": "应用程序",
+      "GroupBoxMain.Text": "记录",
+      "mItemClose.Caption": "退出",
+      "mItemLocale.Caption": "语言",
+      "mItemApp.Caption": "应用程序",
+      "GroupBoxMain.Caption": "记录",
+      "actNewEntity.Caption": "添加新实体"
+    },
+    "TFraEntity": {
+      "lblEntity.Text": "实体",
+      "lblEntity.Caption": "实体"
+    },
+    "TDMData": {
+      "tabEntityID.DisplayLabel": "编号",
+      "tabEntityEntity_Name.DisplayLabel": "实体名称"
+    }
+  }
+}

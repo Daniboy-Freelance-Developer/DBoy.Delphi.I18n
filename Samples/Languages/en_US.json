@@ -1,0 +1,42 @@
+{
+  "locale": "en_US",
+  "languageName": "English (United States)",
+  "iconName": "flag_en_US",
+  "translations": {
+    "General": {
+    	"SMsgDlgConfirm": "Confirm",
+      "SMsgDlgInformation": "Information",
+      "SMsgDlgWarning": "Warning",
+      "SMsgDlgError": "Error",
+      "SMsgDlgYes": "Yes",
+      "SMsgDlgNo": "No",
+      "SMsgDlgOK": "OK",
+      "SMsgDlgCancel": "Cancel",
+      "SMsgConfirmExit": "Do you really want to exit the application?",
+      "SMsgSaveSuccess": "Record saved successfully!",
+      "SMsgErrorDelete": "You do not have permission to delete",
+      "SBtnDelete": "Delete",
+      "SBtnPost": "Save"
+    },
+    "TFrmViewMain": {
+      "Caption": "Internationalization Support Example",
+      "mItemClose.Text": "Exit",
+      "mItemLocale.Text": "Language",
+      "mItemApp.Text": "Application",
+      "GroupBoxMain.Text": "Records",
+      "mItemClose.Caption": "Exit",
+      "mItemLocale.Caption": "Language",
+      "mItemApp.Caption": "Application",
+      "GroupBoxMain.Caption": "Records",
+      "actNewEntity.Caption": "Add a New Entity"
+    },
+    "TFraEntity": {
+      "lblEntity.Text": "Entity",
+      "lblEntity.Caption": "Entity"
+    },
+    "TDMData": {
+      "tabEntityID.DisplayLabel": "ID",
+      "tabEntityEntity_Name.DisplayLabel": "Entity Name"
+    }
+  }
+}
