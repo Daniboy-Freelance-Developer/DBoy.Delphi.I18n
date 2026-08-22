@@ -21,6 +21,11 @@ uses
 
 procedure TI18nGeneratorTests.GenerateBaseLanguageTemplate;
 begin
+  // Carregando o idioma padrão
+  // en: Loading default language
+  TDBoyI18nEngine.RegisterTranslatableProperty('DisplayLabel');
+  TDBoyI18nEngine.LoadFromFile('Languages\pt_BR.json');
+
   // 1. Registra as janelas e frames que deseja inspecionar
   // en: 1. Registers the windows and frames to inspect
   TI18nExtractor.RegisterClasses([

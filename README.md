@@ -259,6 +259,11 @@ begin
 end;
 ```
 
+Exemplo para Gerar o JSON do seu projeto (implatanção ou atualização automatizada).
+
+<a href="https://github.com/Daniboy-Freelance-Developer/DBoy.Delphi.I18n/blob/main/Imagens/sample_extractor_json.png">
+<img src="https://github.com/Daniboy-Freelance-Developer/DBoy.Delphi.I18n/blob/main/Imagens/sample_extractor_json.jpg" width="365" alt="Execução via DUnitX."></a>
+
 ---
 
 ## ⚙️ Configuração no Projeto (`.dproj`)
