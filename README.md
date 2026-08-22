@@ -4,9 +4,17 @@ O **DBoy.Delphi.I18n** é uma biblioteca moderna e unificada para internacionali
 
 No Windows, a biblioteca realiza um patch de memória dinâmico (`VirtualProtect`) para substituir as `resourcestring` nativas da aplicação, fazendo com que diálogos padrão de sistema (`MessageDlg`, avisos, etc.) e strings globais passem a exibir a tradução carregada instantaneamente, sem necessidade de recompilar.
 
-<img src="https://github.com/Daniboy-Freelance-Developer/DBoy.Delphi.I18n/blob/main/Imagens/sample_fmx_br.jpg" width="365" alt="Exemplo FMX Idioma pt_BR">
-<img src="https://github.com/Daniboy-Freelance-Developer/DBoy.Delphi.I18n/blob/main/Imagens/sample_vcl_en.jpg" width="365" alt="Exemplo VCL Idioma en_US">
-<img src="https://github.com/Daniboy-Freelance-Developer/DBoy.Delphi.I18n/blob/main/Imagens/sample_fmx_zh.jpg" width="365" alt="Exemplo FMX Idioma zh_CN (Symbol UTF8)">
+<table border="0" style="border-collapse: collapse; width: 100%;">
+  <tr>
+    <td style="padding: 8px;"><a href="https://github.com/Daniboy-Freelance-Developer/DBoy.Delphi.I18n/blob/mainImagens/sample_fmx_br.png">
+<img src="https://github.com/Daniboy-Freelance-Developer/DBoy.Delphi.I18n/blob/main/Imagens/sample_fmx_br.jpg" width="365" alt="Exemplo FMX Idioma pt_BR"></a>
+</td>
+    <td style="padding: 8px;"><a href="https://github.com/Daniboy-Freelance-Developer/DBoy.Delphi.I18n/blob/mainImagens/sample_vcl_en.png">
+<img src="https://github.com/Daniboy-Freelance-Developer/DBoy.Delphi.I18n/blob/main/Imagens/sample_vcl_en.jpg" width="365" alt="Exemplo VCL Idioma en_US"></a></td>
+    <td style="padding: 8px;"><a href="https://github.com/Daniboy-Freelance-Developer/DBoy.Delphi.I18n/blob/mainImagens/sample_fmx_zh.png">
+<img src="https://github.com/Daniboy-Freelance-Developer/DBoy.Delphi.I18n/blob/main/Imagens/sample_fmx_zh.jpg" width="365" alt="Exemplo FMX Idioma zh_CN (Symbol UTF8)"></a></td>
+  </tr>
+</table>
 
 ---
 
