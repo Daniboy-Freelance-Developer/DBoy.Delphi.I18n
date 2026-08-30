@@ -1,4 +1,4 @@
-unit DBoy.I18n.Extractor.FMX.Tests;
+ï»¿unit DBoy.I18n.Extractor.FMX.Tests;
 
 interface
 
@@ -21,7 +21,7 @@ uses
 
 procedure TI18nGeneratorTests.GenerateBaseLanguageTemplate;
 begin
-  // Carregando o idioma padrão
+  // Carregando o idioma padrï¿½o
   // en: Loading default language
   TDBoyI18nEngine.RegisterTranslatableProperty('DisplayLabel');
   TDBoyI18nEngine.LoadFromFile('Languages\pt_BR.json');

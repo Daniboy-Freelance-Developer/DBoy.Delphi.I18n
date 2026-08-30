@@ -1,42 +1,42 @@
-{
+﻿{
   "locale": "en_US",
   "languageName": "English (United States)",
   "iconName": "flag_en_US",
   "translations": {
     "General": {
-    	"SMsgDlgConfirm": "Confirm",
-      "SMsgDlgInformation": "Information",
-      "SMsgDlgWarning": "Warning",
+      "SBtnDelete": "Delete",
+      "SBtnPost": "Save",
+      "SMsgConfirmExit": "Do you really want to exit the application?",
+      "SMsgDlgCancel": "Cancel",
+      "SMsgDlgConfirm": "Confirm",
       "SMsgDlgError": "Error",
-      "SMsgDlgYes": "Yes",
+      "SMsgDlgInformation": "Information",
       "SMsgDlgNo": "No",
       "SMsgDlgOK": "OK",
-      "SMsgDlgCancel": "Cancel",
-      "SMsgConfirmExit": "Do you really want to exit the application?",
-      "SMsgSaveSuccess": "Record saved successfully!",
+      "SMsgDlgWarning": "Warning",
+      "SMsgDlgYes": "Yes",
       "SMsgErrorDelete": "You do not have permission to delete",
-      "SBtnDelete": "Delete",
-      "SBtnPost": "Save"
-    },
-    "TFrmViewMain": {
-      "Caption": "Internationalization Support Example",
-      "mItemClose.Text": "Exit",
-      "mItemLocale.Text": "Language",
-      "mItemApp.Text": "Application",
-      "GroupBoxMain.Text": "Records",
-      "mItemClose.Caption": "Exit",
-      "mItemLocale.Caption": "Language",
-      "mItemApp.Caption": "Application",
-      "GroupBoxMain.Caption": "Records",
-      "actNewEntity.Caption": "Add a New Entity"
-    },
-    "TFraEntity": {
-      "lblEntity.Text": "Entity",
-      "lblEntity.Caption": "Entity"
+      "SMsgSaveSuccess": "Record saved successfully!"
     },
     "TDMData": {
-      "tabEntityID.DisplayLabel": "ID",
-      "tabEntityEntity_Name.DisplayLabel": "Entity Name"
+      "tabEntityEntity_Name.DisplayLabel": "Entity Name",
+      "tabEntityID.DisplayLabel": "ID"
+    },
+    "TFraEntity": {
+      "lblEntity.Caption": "Entity",
+      "lblEntity.Text": "Entity"
+    },
+    "TFrmViewMain": {
+      "actNewEntity.Caption": "Add a New Entity",
+      "Caption": "Internationalization Support Example",
+      "GroupBoxMain.Caption": "Records",
+      "GroupBoxMain.Text": "Records",
+      "mItemApp.Caption": "Application",
+      "mItemApp.Text": "Application",
+      "mItemClose.Caption": "Exit",
+      "mItemClose.Text": "Exit",
+      "mItemLocale.Caption": "Language",
+      "mItemLocale.Text": "Language"
     }
   }
 }

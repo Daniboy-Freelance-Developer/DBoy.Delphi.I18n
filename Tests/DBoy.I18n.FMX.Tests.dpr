@@ -30,7 +30,8 @@ uses
   DBoy.I18n.FMX.DMData in '..\Samples\DBoy.I18n.FMX.DMData.pas' {DMData: TDataModule},
   DBoy.I18n.FMX.DMTranslator in '..\Samples\DBoy.I18n.FMX.DMTranslator.pas' {DMTranslator: TDataModule},
   DBoy.I18n.Extractor.Tests in 'DBoy.I18n.Extractor.Tests.pas',
-  DBoy.I18n.Extractor.FMX.Tests in 'DBoy.I18n.Extractor.FMX.Tests.pas';
+  DBoy.I18n.Extractor.FMX.Tests in 'DBoy.I18n.Extractor.FMX.Tests.pas',
+  DBoy.I18n.Engine.Tests in 'DBoy.I18n.Engine.Tests.pas';
 
 { keep comment here to protect the following conditional from being removed by the IDE when adding a unit }
 {$IFNDEF TESTINSIGHT}

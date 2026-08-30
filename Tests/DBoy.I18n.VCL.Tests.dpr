@@ -1,4 +1,4 @@
-program DBoy.I18n.VCL.Tests;
+﻿program DBoy.I18n.VCL.Tests;
 
 {$DEFINE VCL}
 
@@ -30,7 +30,8 @@ uses
   DBoy.I18n.ResourceStrings in '..\Samples\DBoy.I18n.ResourceStrings.pas',
   DBoy.I18n.VCL.DMTranslator in '..\Samples\DBoy.I18n.VCL.DMTranslator.pas' {DMTranslator: TDataModule},
   DBoy.I18n.VCL.DMData in '..\Samples\DBoy.I18n.VCL.DMData.pas' {DMData: TDataModule},
-  DBoy.I18n.Extractor.VCL.Tests in 'DBoy.I18n.Extractor.VCL.Tests.pas';
+  DBoy.I18n.Extractor.VCL.Tests in 'DBoy.I18n.Extractor.VCL.Tests.pas',
+  DBoy.I18n.Engine.Tests in 'DBoy.I18n.Engine.Tests.pas';
 
 { keep comment here to protect the following conditional from being removed by the IDE when adding a unit }
 {$IFNDEF TESTINSIGHT}

@@ -15,13 +15,16 @@ type
   TDBoyI18nEngine = class
   private
     class var FResStringRegistry: TDictionary<string, PResStringRec>;
+    class var FOriginalResStringIdentifiers: TDictionary<PResStringRec, NativeUInt>;
+    class var FHookedStrings: TDictionary<PResStringRec, string>;
     class var FDictionary: TDictionary<string, string>;
     class var FCurrentLocale: string;
     class var FTranslatableProperties: TList<string>;
 
-    // Modifica o ponteiro da resourcestring em memória (32 e 64-bit)
-    // en: Modifies the resourcestring pointer in memory (32 and 64-bit)
+    // Modifica o ponteiro da resourcestring em memória (32 e 64-bit) de forma segura
+    // en: Modifies the resourcestring pointer in memory (32 and 64-bit) safely
     class procedure HookResourceString(OldStr: PResStringRec; const NewStr: string);
+    class procedure UnhookAllResourceStrings;
     class procedure ParseJsonObject(AJsonObj: TJSONObject; const APrefix: string = '');
     class function GetTranslation(const AKey: string; out ATranslated: string): Boolean;
     class procedure TranslateObject(AObj: TObject; const APrefix: string = '');
@@ -44,6 +47,11 @@ type
     class function LoadFromFile(const AFilePath: string): Boolean;
     class function LoadFromString(const AJsonContent: string): Boolean;
 
+    // Limpeza e redefinição para o estado padrão
+    // en: Clearing and resetting to default state
+    class procedure Clear;
+    class procedure Reset;
+
     class procedure NotifyLanguageChanged;
 
     // Tradução de componentes visuais (VCL / FMX)
@@ -53,6 +61,7 @@ type
     class property CurrentLocale: string read FCurrentLocale;
 
     class function ResStringRegistry: TDictionary<string, PResStringRec>;
+    class function DictionaryCount: Integer;
   end;
 
   TLanguageChangedMessage = class(TMessage<string>);
@@ -67,6 +76,8 @@ uses
 class constructor TDBoyI18nEngine.Create;
 begin
   FResStringRegistry := TDictionary<string, PResStringRec>.Create;
+  FOriginalResStringIdentifiers := TDictionary<PResStringRec, NativeUInt>.Create;
+  FHookedStrings := TDictionary<PResStringRec, string>.Create;
   FDictionary := TDictionary<string, string>.Create;
   FTranslatableProperties := TList<string>.Create;
   FCurrentLocale := '';
@@ -81,7 +92,10 @@ end;
 
 class destructor TDBoyI18nEngine.Destroy;
 begin
+  UnhookAllResourceStrings;
   FResStringRegistry.Free;
+  FOriginalResStringIdentifiers.Free;
+  FHookedStrings.Free;
   FDictionary.Free;
   FTranslatableProperties.Free;
 end;
@@ -106,7 +120,12 @@ end;
 
 class procedure TDBoyI18nEngine.RegisterResString(const AKey: string; AResRec: PResStringRec);
 begin
-  FResStringRegistry.AddOrSetValue(AKey.ToLower, AResRec);
+  if AResRec <> nil then
+  begin
+    FResStringRegistry.AddOrSetValue(AKey.ToLower, AResRec);
+    if not FOriginalResStringIdentifiers.ContainsKey(AResRec) then
+      FOriginalResStringIdentifiers.Add(AResRec, AResRec.Identifier);
+  end;
 end;
 
 class function TDBoyI18nEngine.ResStringRegistry: TDictionary<string, PResStringRec>;
@@ -114,16 +133,72 @@ begin
   Result := FResStringRegistry;
 end;
 
+class function TDBoyI18nEngine.DictionaryCount: Integer;
+begin
+  if Assigned(FDictionary) then
+    Result := FDictionary.Count
+  else
+    Result := 0;
+end;
+
+class procedure TDBoyI18nEngine.UnhookAllResourceStrings;
+{$IFDEF MSWINDOWS}
+var
+  OldProtect: DWORD;
+  P: Pointer;
+  Pair: TPair<PResStringRec, NativeUInt>;
+  ResRec: PResStringRec;
+  OrigId: NativeUInt;
+begin
+  if FOriginalResStringIdentifiers = nil then
+    Exit;
+
+  for Pair in FOriginalResStringIdentifiers do
+  begin
+    ResRec := Pair.Key;
+    OrigId := Pair.Value;
+    if (ResRec <> nil) and (ResRec.Module <> nil) then
+    begin
+      P := @ResRec.Identifier;
+      if VirtualProtect(P, SizeOf(Pointer), PAGE_EXECUTE_READWRITE, @OldProtect) then
+      try
+        PPointer(P)^ := Pointer(OrigId);
+      finally
+        VirtualProtect(P, SizeOf(Pointer), OldProtect, @OldProtect);
+      end;
+    end;
+  end;
+
+  if FHookedStrings <> nil then
+    FHookedStrings.Clear;
+end;
+{$ELSE}
+begin
+  // Hooking resource strings is only supported on Windows
+end;
+{$ENDIF}
+
 class procedure TDBoyI18nEngine.HookResourceString(OldStr: PResStringRec; const NewStr: string);
 {$IFDEF MSWINDOWS}
 var
   OldProtect: DWORD;
   P: Pointer;
+  LStoredStr: string;
 begin
   // Validação segura para 32-bit e 64-bit
   // en: Safe validation for 32-bit and 64-bit
   if (OldStr = nil) or (OldStr.Module = nil) then
     Exit;
+
+  // Preserva o identificador original nativo antes de aplicar o hook
+  // en: Preserves original native identifier before applying hook
+  if not FOriginalResStringIdentifiers.ContainsKey(OldStr) then
+    FOriginalResStringIdentifiers.Add(OldStr, OldStr.Identifier);
+
+  // Mantém a string permanentemente alocada na memória com refcount ativo
+  // en: Keeps the string permanently allocated in memory with active refcount
+  FHookedStrings.AddOrSetValue(OldStr, NewStr);
+  LStoredStr := FHookedStrings[OldStr];
 
   P := @OldStr.Identifier; // Endereço onde o ID ou ponteiro da string reside
   // en: Address where the string ID or pointer resides
@@ -132,9 +207,7 @@ begin
   try
     // Sobrescreve o identificador/ponteiro com o endereço do PChar do novo texto
     // en: Overwrites the identifier/pointer with the PChar address of the new text
-    // (A string NewStr deve permanecer alocada na memória)
-    // en: (The NewStr string must remain allocated in memory)
-    PPointer(P)^ := PChar(NewStr);
+    PPointer(P)^ := PChar(LStoredStr);
   finally
     VirtualProtect(P, SizeOf(Pointer), OldProtect, @OldProtect);
   end;
@@ -181,6 +254,20 @@ begin
   end;
 end;
 
+class procedure TDBoyI18nEngine.Clear;
+begin
+  UnhookAllResourceStrings;
+  if Assigned(FDictionary) then
+    FDictionary.Clear;
+  FCurrentLocale := '';
+end;
+
+class procedure TDBoyI18nEngine.Reset;
+begin
+  Clear;
+  NotifyLanguageChanged;
+end;
+
 class function TDBoyI18nEngine.LoadFromString(const AJsonContent: string): Boolean;
 var
   RootVal: TJSONValue;
@@ -199,6 +286,9 @@ begin
     if RootObj.Values['locale'] <> nil then
       FCurrentLocale := RootObj.Values['locale'].Value;
 
+    // Restaura hooks anteriores e limpa o dicionário antes de carregar novo idioma
+    // en: Restores previous hooks and clears dictionary before loading new language
+    UnhookAllResourceStrings;
     FDictionary.Clear;
 
     if RootObj.Values['translations'] is TJSONObject then
@@ -248,7 +338,7 @@ var
   I: Integer;
   ChildComp: TComponent;
 begin
-  if not Assigned(AObj) then
+  if (not Assigned(AObj)) or (FDictionary = nil) or (FDictionary.Count = 0) then
     Exit;
 
   Ctx := TRttiContext.Create;
@@ -269,10 +359,10 @@ begin
           TranslationKey := APrefix + '.' + Prop.Name;
 
           if GetTranslation(TranslationKey, NewVal) or
-             GetTranslation('general.' + CurVal, NewVal) or
-             GetTranslation(CurVal, NewVal) then
+             (not CurVal.Trim.IsEmpty and (GetTranslation('general.' + CurVal, NewVal) or GetTranslation(CurVal, NewVal))) then
           begin
-            Prop.SetValue(AObj, NewVal);
+            if not NewVal.IsEmpty then
+              Prop.SetValue(AObj, TValue.From<string>(NewVal));
           end;
         end;
       end;
@@ -286,14 +376,18 @@ begin
     for I := 0 to TComponent(AObj).ComponentCount - 1 do
     begin
       ChildComp := TComponent(AObj).Components[I];
-      TranslateObject(ChildComp, APrefix + '.' + ChildComp.Name);
+      var LName: string := ChildComp.Name;
+      if not LName.IsEmpty then
+        TranslateObject(ChildComp, APrefix + '.' + LName);
     end;
   end;
 end;
 
 class procedure TDBoyI18nEngine.Translate(AInstance: TComponent);
 begin
-  if not Assigned(AInstance) then
+  // Bypass Total: Se o dicionário estiver vazio ou não carregado, aborta imediatamente
+  // en: Total Bypass: If dictionary is empty or not loaded, aborts immediately
+  if (not Assigned(AInstance)) or (FDictionary = nil) or (FDictionary.Count = 0) then
     Exit;
 
   TranslateObject(AInstance, AInstance.ClassName);

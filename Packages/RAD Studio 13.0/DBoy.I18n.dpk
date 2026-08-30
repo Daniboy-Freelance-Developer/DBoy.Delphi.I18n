@@ -33,6 +33,9 @@ requires
   rtl;
 
 contains
-  DBoy.I18n.Engine in '..\..\Source\DBoy.I18n.Engine.pas';
+  DBoy.I18n.Messages in '..\..\Source\DBoy.I18n.Messages.pas',
+  DBoy.I18n.Engine in '..\..\Source\DBoy.I18n.Engine.pas',
+  DBoy.I18n.GlobalTests in '..\..\Source\DBoy.I18n.GlobalTests.pas',
+  DBoy.I18n.Extractor in '..\..\Source\DBoy.I18n.Extractor.pas';
 
 end.

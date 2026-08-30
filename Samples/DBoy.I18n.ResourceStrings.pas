@@ -1,4 +1,4 @@
-unit DBoy.I18n.ResourceStrings;
+﻿unit DBoy.I18n.ResourceStrings;
 
 interface
 

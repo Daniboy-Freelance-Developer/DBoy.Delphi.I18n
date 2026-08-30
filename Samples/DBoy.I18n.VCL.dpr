@@ -1,4 +1,4 @@
-program DBoy.I18n.VCL;
+﻿program DBoy.I18n.VCL;
 
 {$DEFINE VCL}
 
